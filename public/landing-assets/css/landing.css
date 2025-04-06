@@ -1,0 +1,41 @@
+.bluey {
+    background-color: #1F41BB;
+}
+.picturey {
+    height: 550px;
+    width: 550px;
+    margin: 100px 100px;
+}
+.text1 {
+    color: #1F41BB;
+}
+.login1 {
+    border-radius: 10px;
+    border: 1px solid #1F41BB;
+    background-color: #1F41BB;
+    color: white;
+    padding: 9px 25px;
+}
+.login1:hover {
+    color: black;
+    background-color: white;
+    transition: 0.3s;
+    cursor: pointer;
+}
+.register1 {
+    border-radius: 10px;
+    border: 1px solid #1F41BB;
+    background-color: #1F41BB;
+    color: white;
+    padding: 9px 20px;
+}
+.register1:hover {
+    color: black;
+    background-color: white;
+    transition: 0.3s;
+    cursor: pointer;
+}
+.overall {
+    width: 350px;
+    margin: 220px auto;
+}
