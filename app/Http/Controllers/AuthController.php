@@ -15,6 +15,11 @@ class AuthController extends Controller
         return view('auth.auth-pages.landingpage.landing');
     }
 
+    public function login()
+    {
+        //
+        return view('auth.auth-pages.login.login');
+    }
     /**
      * Show the form for creating a new resource.
      */

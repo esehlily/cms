@@ -3,8 +3,8 @@
 }
 .picturey {
     height: 550px;
-    width: 550px;
-    margin: 100px 100px;
+    width: 450px;
+    margin: 100px 50px;
 }
 .text1 {
     color: #1F41BB;
@@ -19,7 +19,7 @@
 .login1:hover {
     color: black;
     background-color: white;
-    transition: 0.3s;
+    transition: all 0.4s ease;
     cursor: pointer;
 }
 .register1 {
