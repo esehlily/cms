@@ -8,6 +8,14 @@
 }
 .text1 {
     color: #1F41BB;
+    line-height: 50px;
+}
+.parry {
+    line-height: 35px;
+    padding-top: 10px;
+}
+.buttony {
+    padding-top: 20px;
 }
 .login1 {
     border-radius: 10px;
@@ -37,5 +45,43 @@
 }
 .overall {
     width: 350px;
-    margin: 220px auto;
+    margin: 0 auto;
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+    .picturey {
+        width: 550px;
+    }
+    .overall {
+        width: 350px;
+        margin: 220px auto;
+    }
+    .text1 {
+        line-height: 60px;
+    }
+    .parry {
+        line-height: 40px;
+        padding-top: 20px;
+    }
+    .buttony {
+        padding-top: 25px;
+    }
+}
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+    .overall {
+        width: 350px;
+        margin: 220px auto;
+    }
+    .text1 {
+        line-height: 60px;
+    }
+    .parry {
+        line-height: 40px;
+        padding-top: 20px;
+    }
+    .buttony {
+        padding-top: 25px;
+    }
 }
