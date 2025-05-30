@@ -11,13 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('responses', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('matric_number', 11)->unique();
-            $table->string('password');
-            $table->boolean('type')->default('false');
-            $table->rememberToken();
+            $table->foreignId('complaint_id')->constrained()->onDelete('cascade');
+            $table->foreignId('user_id')->constrained()->comment('The admin who responded');
+            $table->text('message');
             $table->timestamps();
         });
     }
@@ -27,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('responses');
     }
 };

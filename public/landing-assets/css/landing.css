@@ -14,6 +14,10 @@
     line-height: 35px;
     padding-top: 10px;
 }
+.parry1 {
+    line-height: 30px;
+    padding-top: 4px;
+}
 .buttony {
     padding-top: 20px;
 }
@@ -47,7 +51,62 @@
     width: 350px;
     margin: 0 auto;
 }
-
+.overall1 {
+    width: 400px;
+    margin: 80px auto;
+}
+input {
+    width: 100%;
+    padding: 12px;
+    border-radius: 10px;
+    border: 1px solid #1f41bb;
+    outline: none;
+    background-color: #F1F4FF;
+}
+.loginbtn {
+    width: 100%;
+    padding: 12px;
+    border-radius: 10px;
+    border: 1px solid #1f41bb;
+    outline: none;
+    background-color: #1F41BB;
+    color: white;
+    cursor: pointer;
+}
+.loginbtn:hover {
+    color: black;
+    background-color: white;
+    transition: 0.3s;
+    cursor: pointer;
+}
+.registerbtn {
+    width: 100%;
+    padding: 12px;
+    border-radius: 10px;
+    border: 1px solid #1f41bb;
+    outline: none;
+    background-color: #1F41BB;
+    color: white;
+    cursor: pointer;
+}
+.registerbtn:hover {
+    color: black;
+    background-color: white;
+    transition: 0.3s;
+    cursor: pointer;
+}
+.register2 {
+    text-decoration: none;
+}
+.register2:hover {
+    text-decoration: underline;
+}
+.login2 {
+    text-decoration: none;
+}
+.login2:hover {
+    text-decoration: underline;
+}
 /* Extra large devices (large laptops and desktops, 1200px and up) */
 @media only screen and (min-width: 1200px) {
     .picturey {
@@ -55,7 +114,7 @@
     }
     .overall {
         width: 350px;
-        margin: 220px auto;
+        margin: 150px auto;
     }
     .text1 {
         line-height: 60px;
@@ -72,7 +131,7 @@
 @media only screen and (min-width: 992px) {
     .overall {
         width: 350px;
-        margin: 220px auto;
+        margin: 150px auto;
     }
     .text1 {
         line-height: 60px;
@@ -83,5 +142,13 @@
     }
     .buttony {
         padding-top: 25px;
+    }
+}
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+    .overall1 {
+        width: 300px;
+        margin: 60px auto;
+        /* text-align: center; */
     }
 }

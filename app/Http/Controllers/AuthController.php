@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 
 class AuthController extends Controller
 {
@@ -20,6 +24,12 @@ class AuthController extends Controller
         //
         return view('auth.auth-pages.login.login');
     }
+
+    public function register()
+    {
+        //
+        return view('auth.auth-pages.register.register');
+    }
     /**
      * Show the form for creating a new resource.
      */
@@ -31,10 +41,39 @@ class AuthController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function registerSave(Request $request)
     {
         //
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'matric_number' => 'required|string|unique:users,matric_number|max:11',
+            'password' => 'required|min:8|confirmed',
+        ]);
+        User::create([
+            'name' => $request['name'],
+            'matric_number' => $request['matric_number'],
+            'password' => Hash::make($request['password']),
+            'type' => "0"
+        ]);
+
+        return redirect('/login')->with('success', 'Registration successful. Please log in.');
     }
+
+    public function loginAction(Request $request)
+    {
+        $credentials = $request->only('matric_number', 'password');
+
+        if (Auth::attempt($credentials)) {
+            // Redirect to dashboard if successful
+            return redirect()->route('index');
+        }
+
+        // Redirect back with error if authentication fails
+        return back()->withErrors([
+            'password' => 'Invalid matric number or password.',
+        ])->withInput();
+    }
+
 
     /**
      * Display the specified resource.

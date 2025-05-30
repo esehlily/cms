@@ -4,6 +4,9 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\AuthController;
 
+use App\Http\Controllers\AdminController;
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -21,5 +24,11 @@ use App\Http\Controllers\AuthController;
 // });
 
 Route::get('/landing', [AuthController::class, 'index']);
-Route::get('/login', [AuthController::class, 'login']);
+Route::get('/login', [AuthController::class, 'login'])->name('login');
+Route::post('/login', [AuthController::class, 'loginAction'])->name('login.action');
+Route::get('/register', [AuthController::class, 'register'])->name('register');
+Route::post('/register', [AuthController::class, 'registerSave'])->name('register.post');
+Route::get('/admin', [AdminController::class, 'admin'])->name('admin');
+
+
 
