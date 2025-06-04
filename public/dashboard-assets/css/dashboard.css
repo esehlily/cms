@@ -2,6 +2,7 @@
     border-right: 1px solid #B1B1B1;
     height: 100vh;
     padding: 20px 10px 0px 10px;
+    position: fixed;
 }
 .blue-border1{
     border-bottom: 1px solid white;
@@ -35,12 +36,40 @@
         color: #1f41bb !important;
     }
 }
+.tre{
+    gap: 2rem;
+}
 .bluey {
     background-color:#1f41bb;
 }
-
-
-
+.viewy {
+    border: 1px solid #1f41bb;
+    color: #1f41bb;
+    border-radius: 8px;
+    padding: 7px 14px;
+    background-color: white;
+}
+.viewy:hover {
+    color: white;
+    background-color: #1f41bb;
+    transition: 0.3s;
+    cursor: pointer;
+}
+.scroll {
+    margin-left: 380px;
+}
+.filter {
+    border: 1px solid #1f41bb;
+    background-color: white;
+    border-radius: 8px;
+    color: #1f41bb;
+}
+.filter:hover {
+    color: white;
+    background-color: #1f41bb;
+    transition: 0.3s;
+    cursor: pointer;
+}
 @media (min-width: 992px) {
     .col-lg-4 {
         flex: 0 0 auto;
@@ -56,6 +85,9 @@
         width: 100%;
         margin: 0px 0px;
     }
+    .scroll{
+        margin-left: 0px;
+    }
 }
 /* Small devices (portrait tablets and large phones, 600px and up) */
 @media only screen and (min-width: 600px) {
@@ -66,4 +98,9 @@
         margin: 0px 0px;
     }
 }
-
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (max-width: 992px) {
+    .scroll {
+        margin-left: 0px;
+    }
+}

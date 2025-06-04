@@ -65,13 +65,37 @@ class AuthController extends Controller
 
         if (Auth::attempt($credentials)) {
             // Redirect to dashboard if successful
-            return redirect()->route('index');
+            return redirect()->route('userdashboard');
         }
 
         // Redirect back with error if authentication fails
         return back()->withErrors([
             'password' => 'Invalid matric number or password.',
         ])->withInput();
+
+        $request->session()->regenerate();
+
+        // if (auth()->user()->type == 'admin') {
+        //     return redirect()->route('admin');
+        // } else {
+        //     return redirect()->route('user');
+        // }
+
+        // return redirect()->route('dashboard');
+        //  return back()->withErrors([
+        //     'password' => 'Invalid matric number or password.',
+        // ])->withInput();
+
+        // $request->session()->regenerate();
+    }
+
+    public function logout(Request $request)
+    {
+        Auth::guard('web')->logout(); // Logs out the user
+
+        $request->session()->invalidate();       // Invalidate the session
+        $request->session()->regenerateToken();
+        return redirect('/login')->with('status', 'You have been logged out.');
     }
 
 

@@ -15,8 +15,12 @@
                     <h1 class="text1 mb-0">Welcome to the <br> Complaint Portal</h1>
                     <p class="parry mb-0">Lay your complaints here whether it is relating to personal concern, environmental concern or just any complaints</p>
                     <div class="buttony">
-                        <button class="login1 w-100 mb-4" name="login">Login</button>
-                        <button class="register1 w-100" name="register">Register</button>
+                        <form action="{{ route('login') }}" method="GET">
+                            <button class="login1 w-100 mb-4" name="login">Login</button>
+                        </form>
+                        <form action="{{ route('register') }}">
+                            <button class="register1 w-100" name="register">Register</button>
+                        </form>
                     </div>
                 </div>
             </div>
