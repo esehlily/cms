@@ -12,4 +12,11 @@ class AdminController extends Controller
         //
         return view('layouts.admin');
     }
+
+    //
+    public function admindashboard()
+    {
+        //
+        return view('cms-pages.dashboard.admin.admin');
+    }
 }

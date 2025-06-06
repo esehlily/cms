@@ -12,4 +12,11 @@ class ComplaintController extends Controller
         //
         return view('cms-pages.newcomplaints.newcomplaints');
     }
+
+    //
+    public function complaints()
+    {
+        //
+        return view('cms-pages.complaints.complaints');
+    }
 }

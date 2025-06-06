@@ -6,7 +6,10 @@
 
 @section('content')
 <div>
-    <div class="row pt-5 tre px-3">
+    <div class="px-3 pt-3">
+        <h3>Hi, {{ Auth::user()->name }}!</h3>
+    </div>
+    <div class="row pt-4 tre px-3">
         <div class="col-lg-4 shadow">
             <div style="width: 85px; margin: 0 auto;">
                 <img src="dashboard-assets\img\bell.png" alt="" width="60px" class="mt-5">

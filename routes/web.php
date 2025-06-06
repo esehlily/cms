@@ -10,6 +10,9 @@ use App\Http\Controllers\UserController;
 
 use App\Http\Controllers\MyComplaintsController;
 
+use App\Http\Controllers\ComplaintController;
+
+
 
 
 
@@ -34,13 +37,16 @@ Route::post('/login', [AuthController::class, 'loginAction'])->name('login.actio
 Route::get('/register', [AuthController::class, 'register'])->name('register');
 Route::post('/register', [AuthController::class, 'registerSave'])->name('register.post');
 Route::middleware(['auth'])->group(function () {
-    Route::get('/user', [UserController::class, 'user'])->name('user');
+    Route::get('/mycomplaints', [MyComplaintsController::class, 'mycomplaints'])->name('mycomplaints');
+    Route::get('/newcomplaints', [ComplaintController::class, 'newcomplaints'])->name('newcomplaints');
+    Route::get('/complaints', [ComplaintController::class, 'complaints'])->name('complaints');
 });
-Route::middleware(['auth'])->group(function () {
+Route::middleware(['auth', 'user-access:user'])->group(function () {
     Route::get('/userdashboard', [UserController::class, 'userdashboard'])->name('userdashboard');
 });
-Route::get('/admin', [AdminController::class, 'admin'])->name('admin');
-Route::get('/mycomplaints', [MyComplaintsController::class, 'mycomplaints'])->name('mycomplaints');
+Route::middleware(['auth', 'user-access:admin'])->group(function () {
+    Route::get('/admindashboard', [AdminController::class, 'admindashboard'])->name('admindashboard');
+});
 Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth')->name('logout');
 
 

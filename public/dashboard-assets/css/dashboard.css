@@ -1,3 +1,6 @@
+body {
+    overflow-x: hidden;
+}
 .blue-border{
     border-right: 1px solid #B1B1B1;
     height: 100vh;
@@ -69,6 +72,22 @@
     background-color: #1f41bb;
     transition: 0.3s;
     cursor: pointer;
+}
+.guide {
+    border: 1px solid rgb(211, 211, 211);
+    border-radius: 8px;
+}
+.subject {
+    outline: none !important;
+    box-shadow: none !important;
+    border: 1px solid #1f41bb;
+}
+.submitcomplaint {
+    border: 1px solid #1f41bb;
+    background-color: #1f41bb;
+    color: white;
+    border-radius: 5px;
+    width: 100%;
 }
 @media (min-width: 992px) {
     .col-lg-4 {

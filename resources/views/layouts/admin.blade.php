@@ -15,10 +15,12 @@
             {{-- Sidebar --}}
             @include('includes.admin.sidebar')
 
-            {{-- Header --}}
-            @include('includes.admin.header')
+            <div class="col-lg-9 scroll">
+                {{-- Header --}}
+                @include('includes.admin.header')
 
-            @yield('content')
+                @yield('content')
+            </div>
         </div>
     </div>
 
