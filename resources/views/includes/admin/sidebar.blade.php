@@ -8,14 +8,14 @@
                             <ul class="list-unstyled">
                                 <li class="py-2">
                                     <div class="icon-s">
-                                        <a href="" class="icon-a">
+                                        <a href="{{ route('admindashboard') }}" class="icon-a">
                                             <i class="fas fa-cubes px-4 icon-p"></i> Dashboard
                                         </a>
                                     </div>
                                 </li>
                                 <li class="py-2">
                                     <div class="icon-s">
-                                        <a href="" class="icon-a">
+                                        <a href="{{ route('complaints') }}" class="icon-a">
                                             <i class="fas fa-file-lines px-4 icon-p"></i>
                                             Complaints
                                         </a>

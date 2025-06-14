@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-    <div class="container-fluid">
+    <div class="container-fluid overflow-y-hidden">
         <div class="row vh-100">
             <div class="col-lg-6 bg-white">
                 <div class="overall1" data-aos="fade-right" data-aos-duration="2000">

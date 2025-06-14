@@ -53,34 +53,84 @@ class AuthController extends Controller
             'name' => $request['name'],
             'matric_number' => $request['matric_number'],
             'password' => Hash::make($request['password']),
-            'type' => "0"
+            'role' => 'student',
+            'type' => '0',
         ]);
 
         return redirect('/login')->with('success', 'Registration successful. Please log in.');
     }
 
+    // public function loginAction(Request $request)
+    // {
+    //     $credentials = $request->only('matric_number', 'password');
+
+    //     if (Auth::attempt($credentials)) {
+    //         // Authentication passed, now check user type
+    //         if (auth()->user()->role == 'admin') {
+    //             return redirect()->route('admindashboard');
+    //         } else {
+    //             return redirect()->route('userdashboard');
+    //         }
+    //     } else {
+    //         // Redirect back with error if authentication fails
+    //         return back()->withErrors([
+    //             'password' => 'Invalid matric number or password.',
+    //         ])->withInput();
+
+    //         $request->session()->regenerate();
+    //     }
+
+
+
+    // }
+    // public function loginAction(Request $request)
+    // {
+    //     $credentials = $request->validate([
+    //         'matric_number' => 'required|string',
+    //         'password' => 'required'
+    //     ]);
+
+    //     if (Auth::attempt($credentials)) {
+    //         $request->session()->regenerate();
+
+    //         if (auth()->user()->isAdmin()) {
+    //             return redirect()->route('admindashboard');
+    //         }
+    //         return redirect()->route('userdashboard');
+    //     }
+
+    //     return back()->withErrors([
+    //         'password' => 'Invalid matric number or password',
+    //     ])->onlyInput('matric_number');
+    // }
     public function loginAction(Request $request)
     {
-        $credentials = $request->only('matric_number', 'password');
+        $credentials = $request->validate([
+            'matric_number' => 'required|string',
+            'password' => 'required'
+        ]);
 
         if (Auth::attempt($credentials)) {
-            // Authentication passed, now check user type
-            if (auth()->user()->type == 'admin') {
-                return redirect()->route('admin');
-            } else {
+            $request->session()->regenerate();
+
+            $user = Auth::user();
+
+            if ($user->role === 'admin') {
+                return redirect()->route('admindashboard');
+            }
+
+            // Explicitly check for student role
+            if ($user->role === 'student') {
                 return redirect()->route('userdashboard');
             }
-        } else {
-            // Redirect back with error if authentication fails
-            return back()->withErrors([
-                'password' => 'Invalid matric number or password.',
-            ])->withInput();
 
-            $request->session()->regenerate();
+            // Default fallback for any other roles
+            return redirect()->route('userdashboard');
         }
 
-
-
+        return back()->withErrors([
+            'password' => 'Invalid credentials',
+        ])->onlyInput('matric_number');
     }
 
     public function logout(Request $request)

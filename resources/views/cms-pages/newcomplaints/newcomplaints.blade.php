@@ -23,35 +23,37 @@
     <div class="guide mt-4 mx-3 mb-5">
         <h5 class="pt-4 px-4 pb-3">Complaint Details</h5>
         <div class="border"></div>
-        <form action="">
+        <form action="{{ route('storecomplaints') }}" method="POST" enctype="multipart/form-data">
+            @csrf
             <div class="mb-2 px-4 pt-4">
                 <label for="subject" class="form-label fw-bold">Subject</label>
-                <input type="subject" class="form-control subject" id="subject" placeholder="Brief description of your complaint">
+                <input type="text" name="subject" class="form-control subject" id="subject" placeholder="Brief description of your complaint">
             </div>
             <div class="px-4 pt-3">
                 <label for="category" class="form-label fw-bold">Category</label>
-                <select class="form-select subject" aria-label="Default select example">
-                    <option selected>Select Category</option>
-                    <option value="1">Academic</option>
-                    <option value="2">Administrative</option>
-                    <option value="3">Facility</option>
-                    <option value="4">Harassment</option>
-                    <option value="5">Financial</option>
-                    <option value="6">Other</option>
+                <select name="category" class="form-select subject" aria-label="Default select example">
+                    <option value="" selected disabled>Select Category</option>
+                    <option value="Academic">Academic</option>
+                    <option value="Administrative">Administrative</option>
+                    <option value="Facility">Facility</option>
+                    <option value="Harassment">Harassment</option>
+                    <option value="Financial">Financial</option>
+                    <option value="Other">Other</option>
                 </select>
             </div>
             <div class="mb-3 px-4 pt-4">
-                <label for="exampleFormControlTextarea1" class="form-label fw-bold">Description</label>
-                <textarea class="form-control subject" id="exampleFormControlTextarea1" rows="3" placeholder="Please provide detailed information about your complaint"></textarea>
+                <label for="description" class="form-label fw-bold">Description</label>
+                <textarea name="description" class="form-control subject" id="description" rows="3" placeholder="Please provide detailed information about your complaint"></textarea>
             </div>
             <div class="mb-3 px-4 pt-2">
                 <label for="formFile" class="form-label fw-bold">Supporting Documents {{ '(Optional)' }}</label>
-                <input class="form-control" type="file" id="formFile">
-                <div id="emailHelp" class="form-text pt-2">Upload any relevant documents or images</div>
+                <input class="form-control" type="file" name="documents[]" id="formFile" multiple>
+                <div class="form-text pt-2">Upload any relevant documents or images</div>
             </div>
             <div class="px-4 pt-2 pb-3">
-                <button class="submitcomplaint pt-2 pb-2">Submit Complaint</button>
+                <button type="submit" class="submitcomplaint pt-2 pb-2">Submit Complaint</button>
             </div>
+
         </form>
     </div>
 </div>

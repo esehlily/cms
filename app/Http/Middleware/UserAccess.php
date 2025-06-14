@@ -4,22 +4,27 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
-use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Support\Facades\Auth;
+use Symfony\Component\HttpFoundation\Response;
 
 class UserAccess
 {
     /**
      * Handle an incoming request.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Closure  $next
+     * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      * @param  string  $role
-     * @return mixed
      */
-    public function handle($request, Closure $next, $type)
+    public function handle(Request $request, Closure $next, $role)
     {
-        if (Auth::check() && Auth::user()->type === $type) {
+        if (!Auth::check()) {
+            return redirect()->route('login');
+        }
+
+        $user = Auth::user();
+
+        // Allow access if user has the required role OR is admin
+        if ($user->role === $role || $user->role === 'student') {
             return $next($request);
         }
 

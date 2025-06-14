@@ -2,13 +2,15 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 
 // use Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use App\Models\Complaint;
 
 use Illuminate\Database\Eloquent\Casts\Attribute;
 
@@ -26,7 +28,8 @@ class User extends Authenticatable
         'name',
         'matric_number',
         'password',
-        'type'
+        'type',
+        'role'
     ];
 
     /**
@@ -48,10 +51,39 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
-    protected function type(): Attribute
+    // protected function role(): Attribute
+    // {
+    //     return new Attribute(
+    //         get: fn ($value) =>  ["student", "admin"][$value],
+    //     );
+    // }
+
+    /**
+     * Check if user is admin
+     */
+    public function isAdmin()
     {
-        return new Attribute(
-            get: fn ($value) =>  ["user", "admin"][$value],
-        );
+        return $this->role === 'admin' || $this->type === '1' || $this->type === 'admin';
+    }
+
+    /**
+     * Check if user is student
+     */
+    public function isStudent()
+    {
+        return $this->role === 'student' || $this->type === '0';
+    }
+
+    /**
+     * Get the username field (matric_number)
+     */
+    public function username()
+    {
+        return 'matric_number';
+    }
+
+    public function complaints()
+    {
+        return $this->hasMany(Complaint::class);
     }
 }

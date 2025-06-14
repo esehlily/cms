@@ -9,28 +9,42 @@
     <div class="px-3 pt-3">
         <h3>Hi, {{ Auth::user()->name }}!</h3>
     </div>
-    <div class="row pt-4 tre px-3">
-        <div class="col-lg-3 shadow" style="width: 250px;">
-            <i class="fas fa-circle"></i>
-            <p>Total Complaints</p>
-            <span>125</span>
+    {{-- <div class="row pt-4 tre px-3">
+        <div class="col-lg-4 shadow">
+            <div style="width: 85px; margin: 0 auto;">
+                <img src="dashboard-assets\img\bell.png" alt="" width="60px" class="mt-5">
+                <span class="d-block fs-1 fw-bold pt-2 px-3">4</span>
+            </div>
+            <div style="width: 158px; margin: 0 auto;">
+                <p class="fs-5 text-secondary mt-2">Total Complaints</p>
+            </div>
         </div>
-        <div class="col-lg-3 shadow" style="width: 250px;">
-            <i class="fas fa-circle"></i>
-            <p>Total Complaints</p>
-            <span>125</span>
+        <div class="col-lg-4 shadow">
+            <div style="width: 85px; margin: 0 auto;">
+                <img src="dashboard-assets\img\ringing.png" alt="" width="60px" class="mt-5">
+                <span class="d-block fs-1 fw-bold pt-2 px-3">2</span>
+            </div>
+            <div style="width: 170px; margin: 0 auto;">
+                <p class="fs-5 text-secondary mt-2">Active Complaints</p>
+            </div>
         </div>
-        <div class="col-lg-3 shadow" style="width: 250px;">
-            <i class="fas fa-circle"></i>
-            <p>Total Complaints</p>
-            <span>125</span>
+        <div class="col-lg-4 shadow">
+            <div style="width: 85px; margin: 0 auto;">
+                <img src="dashboard-assets\img\notification.png" alt="" width="60px" class="mt-5">
+                <span class="d-block fs-1 fw-bold pt-2 px-3">1</span>
+            </div>
+            <div style="width: 190px; margin: 0 auto;">
+                <p class="fs-5 text-secondary mt-2">Resolved Complaints</p>
+            </div>
         </div>
-        <div class="col-lg-3 shadow" style="width: 250px;">
-            <i class="fas fa-circle"></i>
-            <p>Total Complaints</p>
-            <span>125</span>
-        </div>
-    </div>
+    </div> --}}
+    <x-complaint-stats
+    :total="$stats['total']"
+    :active="$stats['active']"
+    :resolved="$stats['resolved']"
+    :rejected="$stats['rejected'] ?? 0"
+    :isAdmin="true"
+    />
     <div class="shadow mt-5 pt-3 vh-100">
         <div class="d-flex justify-content-between px-4">
             <div>

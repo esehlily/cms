@@ -8,8 +8,6 @@ use App\Http\Controllers\AdminController;
 
 use App\Http\Controllers\UserController;
 
-use App\Http\Controllers\MyComplaintsController;
-
 use App\Http\Controllers\ComplaintController;
 
 
@@ -37,9 +35,20 @@ Route::post('/login', [AuthController::class, 'loginAction'])->name('login.actio
 Route::get('/register', [AuthController::class, 'register'])->name('register');
 Route::post('/register', [AuthController::class, 'registerSave'])->name('register.post');
 Route::middleware(['auth'])->group(function () {
-    Route::get('/mycomplaints', [MyComplaintsController::class, 'mycomplaints'])->name('mycomplaints');
+    Route::get('/admin', [AdminController::class, 'admin'])->name('admin');
+
+});
+Route::middleware(['user-access:user'])->group(function () {
+    Route::get('/mycomplaints', [ComplaintController::class, 'mycomplaints'])->name('mycomplaints');
     Route::get('/newcomplaints', [ComplaintController::class, 'newcomplaints'])->name('newcomplaints');
-    Route::get('/complaints', [ComplaintController::class, 'complaints'])->name('complaints');
+    Route::get('/showcomplaints/{complaint}', [ComplaintController::class, 'showcomplaints'])->name('showcomplaints');
+    Route::post('/storecomplaints', [ComplaintController::class, 'store'])->name('storecomplaints');
+});
+Route::middleware(['user-access:admin'])->group(function () {
+    Route::get('/complaints', [AdminController::class, 'complaints'])->name('complaints');
+    Route::get('/managecomplaints/{complaint}', [AdminController::class, 'show'])->name('managecomplaints');
+    // Route::get('/complaints/{complaint}/update-status', [AdminController::class, 'showUpdateStatusForm'])->name('complaints.update-status-form');
+    Route::post('/complaints/{complaint}/update-status', [AdminController::class, 'updateStatus'])->name('complaints.update-status');
 });
 Route::middleware(['auth', 'user-access:user'])->group(function () {
     Route::get('/userdashboard', [UserController::class, 'userdashboard'])->name('userdashboard');

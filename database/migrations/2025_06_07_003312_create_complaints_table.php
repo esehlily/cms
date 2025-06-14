@@ -15,8 +15,10 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->string('subject');
+            $table->string('category');
             $table->text('description');
-            $table->enum('status', ['pending', 'in_progress', 'resolved', 'rejected'])->default('pending');
+            $table->string('status')->default('Pending');
+            $table->text('admin_remarks')->nullable();
             $table->timestamps();
         });
     }
